@@ -3,6 +3,7 @@
     box-sizing: border box;
     padding : 0;
     margin: 0;
+    outline: none;
 }
 
 /* Body style  */
@@ -48,34 +49,72 @@ body{
     justify-content: space-between;
 }
 .button{
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     border: 3px solid white;
     background-color: black;
+    font-weight: bold;
     color: white;
     cursor: pointer;
+    
 }
 .button:hover {
-    background-color: black;
-    color: white;
+    background-color: white;
+    color: black;
 }
 .laps{
     list-style: none;
     color:white;
-     
+    height: 250px;
+    overflow: auto;
+    position: relative;  
+    padding: 30px 0; 
+   
+}
+.laps::-webkit-scrollbar{
+    display: none;
 }
 .lap-item{
-    display: inline-block;
-    width: 250px;
+    display: block;
+    width: 230px;
     padding: 15px;
-    background-color: black;
     text-align: center;
+    border: 1px solid rgb(87, 83, 83);
+    border-radius: 50px;
+    margin-bottom: 10px;  
 }
 .number{
     color: white;
+    font-size:large;
 }
 .time-stamp{
     display:inline-block;
     margin-left: 25px;
+    font-size:large;
+}
+
+.lapClearButton{
+    display: block;
+    position: fixed;
+    z-index: 1000;
+    bottom: 35px;
+    left: 50%;
+    transform: translate(-50%);
+    width: 130px;
+    padding: 10px 0;
+    border-radius: 50px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border: 1px solid white;
+    color: white;
+    font-size: 20px;
+    
+ 
+}
+.lapClearButton:hover{
+    background-color: black;
+    color: white;
+}
+.hidden{
+    visibility: hidden;
 }
