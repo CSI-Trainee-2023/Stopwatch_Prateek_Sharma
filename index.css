@@ -1,0 +1,81 @@
+/* style apply for all content  */
+*{
+    box-sizing: border box;
+    padding : 0;
+    margin: 0;
+}
+
+/* Body style  */
+body{
+    font-family: sans-serif;
+    font-size: 16px;
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(8, 9, 9);
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+/* circle design  */
+.outerCircle{
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+.innerCircle{
+    width:230px;
+    height: 230px;
+    border-radius: 50%;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+    
+.text{
+    color: white;
+    font-size: 34px;
+}
+
+.button-wrapper{
+    width: 250px;
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+.button{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 3px solid white;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+.button:hover {
+    background-color: black;
+    color: white;
+}
+.laps{
+    list-style: none;
+    color:white;
+     
+}
+.lap-item{
+    display: inline-block;
+    width: 250px;
+    padding: 15px;
+    background-color: black;
+    text-align: center;
+}
+.number{
+    color: white;
+}
+.time-stamp{
+    display:inline-block;
+    margin-left: 25px;
+}
