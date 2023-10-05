@@ -17,13 +17,14 @@ let min;
 let minCounter = 0;
 let lapItem = 1;
 
-const toggleButton = () => {
+function toggleButton()  {
   lapButton.classList.remove("hidden");
 };
 
-const play = () => {
+function play() {
   if (!isplay) {
-    playButton.innerHTML = "PAUSE";
+    playButton.innerHTML = "STOP";
+    lapButton.textContent = "LAP";
     bg.classList.add("animationBg");
     min = setInterval(() => {
       minute.innerHTML = `${++minCounter} :&nbsp;`;
@@ -42,7 +43,8 @@ const play = () => {
     }, 10);
     isplay = true;
   } else {
-    playButton.innerHTML = "PLAY";
+    playButton.innerHTML = "RESUME";
+    lapButton.textContent = "RESET";
     clearInterval(sec);
     clearInterval(centiSec);
     clearInterval(min);
@@ -52,17 +54,20 @@ const play = () => {
   toggleButton();
 };
 
-const playSec = () => {};
+function playSec()  {
 
-const reset = () => {
+};
+
+function reset()  {
   play();
   lapButton.classList.add("hidden");
 };
 
-const lap = () => {
+function lap() {
   if (isplay) {
-    if ((playButton.innerHTML = "PAUSE")) {
+    if ((playButton.innerHTML = "STOP")) {
       lapButton.innerHTML = "LAP";
+
       const li = document.createElement("li");
       const number = document.createElement("span");
       const timeStamp = document.createElement("span");
@@ -80,23 +85,48 @@ const lap = () => {
     }
   }
   if (!isplay) {
-    if ((playButton.innerHTML = "PLAY")) {
+    if ((playButton.innerHTML = "RESUME")) {
       lapButton.innerHTML = "RESET";
       second.innerHTML = " &nbsp;00 :";
       centiSecond.innerHTML = " &nbsp;00";
       minute.innerHTML = " 00 :";
-      lapButton.classList.remove("hidden");
+      
     }
+    lapButton.classList.remove("hidden");
   }
-};
+}
 
-const clearAll = () => {
+function clearAll() {
   laps.innerHTML = "";
   laps.append(clearButton);
   clearButton.classList.add("hidden");
   lapItem = 0;
-};
+}
 
+// playButton.addEventListener ('keydown', (event)=>
+//   {if (event.ctrlkey && (event.key === 'e')){
+//     event.preventDefault()
+//     // call the function here
+//     play();
+//   }}
+// )
 playButton.addEventListener("click", play);
 lapButton.addEventListener("click", lap);
 clearButton.addEventListener("click", clearAll);
+
+// key shortcuts
+// S/X - Start/Stop
+// R - Reset
+// L - Lap
+
+// document.onkeyup = function (e) {
+//   if (e.key == 'p') {
+//       play.click()
+//   } else if (e.key == 'x') {
+//       play.click()
+//   } else if (e.key == 'c') {
+//       clearAll.click()
+//   } else if (e.key == 'l') {
+//       lap.click()
+//   }
+// };
