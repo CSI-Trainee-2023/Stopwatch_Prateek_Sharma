@@ -17,15 +17,18 @@ let min;
 let minCounter = 0;
 let lapItem = 1;
 
-function toggleButton()  {
+function toggleButton()  
+{
   lapButton.classList.remove("hidden");
 };
 
 function play() {
-  if (!isplay) {
+  if (!isplay) 
+  {
     playButton.innerHTML = "STOP";
     lapButton.textContent = "LAP";
     bg.classList.add("animationBg");
+
     min = setInterval(() => {
       minute.innerHTML = `${++minCounter} :&nbsp;`;
     }, 60 * 1000);
@@ -41,8 +44,11 @@ function play() {
       }
       centiSecond.innerHTML = `${++centiCounter}`;
     }, 10);
+    
     isplay = true;
-  } else {
+  } 
+  else 
+  {
     playButton.innerHTML = "RESUME";
     lapButton.textContent = "RESET";
     clearInterval(sec);
@@ -54,79 +60,67 @@ function play() {
   toggleButton();
 };
 
-function playSec()  {
-
-};
-
-function reset()  {
-  play();
-  lapButton.classList.add("hidden");
-};
-
 function lap() {
+
   if (isplay) {
     if ((playButton.innerHTML = "STOP")) {
       lapButton.innerHTML = "LAP";
-
       const li = document.createElement("li");
       const number = document.createElement("span");
       const timeStamp = document.createElement("span");
       li.setAttribute("class", "lap-item");
       number.setAttribute("class", "number");
       timeStamp.setAttribute("class", "time-stamp");
-
-      number.innerText = `#${lapItem++}`;
-      timeStamp.innerHTML = `${minCounter} : ${secCounter} : ${centiCounter}`;
-
+      const num = number.innerText = `#${lapItem++}`;
+      var time=timeStamp.innerHTML = `${minCounter} : ${secCounter} : ${centiCounter}`;
       li.append(number, timeStamp);
       laps.append(li);
-
       clearButton.classList.remove("hidden");
     }
   }
+  
   if (!isplay) {
     if ((playButton.innerHTML = "RESUME")) {
       lapButton.innerHTML = "RESET";
-      second.innerHTML = " &nbsp;00 :";
-      centiSecond.innerHTML = " &nbsp;00";
-      minute.innerHTML = " 00 :";
-      
+      toReset(); 
     }
     lapButton.classList.remove("hidden");
   }
 }
 
-function clearAll() {
+function toReset()
+{
+  second.innerHTML = " &nbsp;00 :";
+  centiSecond.innerHTML = " &nbsp;00";
+  minute.innerHTML = " 00 :";
+}
+
+
+function clearAll()
+{
   laps.innerHTML = "";
   laps.append(clearButton);
   clearButton.classList.add("hidden");
   lapItem = 0;
 }
 
-// playButton.addEventListener ('keydown', (event)=>
-//   {if (event.ctrlkey && (event.key === 'e')){
-//     event.preventDefault()
-//     // call the function here
-//     play();
-//   }}
-// )
+
 playButton.addEventListener("click", play);
 lapButton.addEventListener("click", lap);
 clearButton.addEventListener("click", clearAll);
 
 // key shortcuts
-// S/X - Start/Stop
-// R - Reset
-// L - Lap
+// ctrl+ s - Start/Stop \resume
+// ctrl+R - Reset
+// ctrl+L - Lap
+// ctrl+c  - clearall laps
 
-// document.onkeyup = function (e) {
-//   if (e.key == 'p') {
-//       play.click()
-//   } else if (e.key == 'x') {
-//       play.click()
-//   } else if (e.key == 'c') {
-//       clearAll.click()
-//   } else if (e.key == 'l') {
-//       lap.click()
-//   }
-// };
+document.addEventListener("keydown", e => { if (e.altKey && e.key.toLowerCase() === "s") { play() } });
+document.addEventListener("keydown", e => { if (e.altKey && e.key.toLowerCase() === "s") { toStop() } });
+document.addEventListener("keydown", e => { if (e.altKey && e.key.toLowerCase() === "r") { toReset() } });
+document.addEventListener("keydown", e => { if (e.altKey && e.key.toLowerCase() === "l") { lap() } });
+document.addEventListener("keydown", e => { if (e.altKey && e.key.toLowerCase() === "s") { Resume() } });
+document.addEventListener("keydown", e => { if (e.altKey && e.key.toLowerCase() === "c") { clearAll() } });
+
+// use local storage to store laps 
+localStorage.setItem("num", "time");
